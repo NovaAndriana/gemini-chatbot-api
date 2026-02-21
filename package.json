@@ -1,0 +1,27 @@
+{
+  "name": "gemini-chatbot-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NovaAndriana/gemini-chatbot-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/NovaAndriana/gemini-chatbot-api/issues"
+  },
+  "homepage": "https://github.com/NovaAndriana/gemini-chatbot-api#readme",
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
