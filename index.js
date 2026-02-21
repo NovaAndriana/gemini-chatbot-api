@@ -32,12 +32,42 @@ const ai = new GoogleGenAI({
 const GEMINI_MODEL = "gemini-2.5-flash";
 
 /* =============================
+   User Profile & System Prompt
+============================= */
+const USER_PROFILE = {
+    name: "Kang Nov",
+    role: "Sr Software Engineer",
+    expertise: [
+        "Backend Development",
+        "AI Integration",
+        "Clean Architecture",
+        "System Design",
+        "FullStack Development"
+    ],
+    goal: "Mengembangkan integrasi AI dalam aplikasi real-world"
+};
+
+const SYSTEM_PROMPT = `
+Kamu adalah AI Assistant pribadi milik ${USER_PROFILE.name},
+seorang ${USER_PROFILE.role}.
+
+Profil pengguna:
+- Keahlian: ${USER_PROFILE.expertise.join(", ")}
+- Tujuan: ${USER_PROFILE.goal}
+
+Aturan:
+- Jawab hanya menggunakan Bahasa Indonesia.
+- Gunakan gaya profesional, teknis, dan ringkas.
+- Berikan insight yang relevan untuk level senior.
+- Jika ditanya "siapa saya", jelaskan berdasarkan profil di atas.
+- Fokus pada solusi praktis dan scalable.
+`;
+
+/* =============================
    Middleware
 ============================= */
 app.use(cors());
 app.use(express.json());
-
-// Serve file static (HTML, CSS, JS) dari folder public
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* =============================
@@ -69,7 +99,7 @@ app.post("/api/chat", async (req, res) => {
       contents,
       config: {
         temperature: 0.8,
-        systemInstruction: "Jawab hanya menggunakan bahasa Indonesia.",
+        systemInstruction: SYSTEM_PROMPT,
       },
     });
 
